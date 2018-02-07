@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  p XSS via <a href="/xss/cookie">cookies</a>, must manually set a malicious payload in the cookie, e.g., &lt;script&gt;alert(document.domain);&lt;/script&gt;
+  p XSS via <a href='/xss/image?src=x"%20onerror="alert(document.domain);'>img src</a>
+  p XSS via <a href="/xss/innerhtml?text=alert(document.domain)">innerHTML</a>
+
+  <br />
+  p CSRF-able form <a href="/csrf/unprotected">CSRF</a>
+  p Non-csrf-able form <a href="/csrf/protected">No CSRF</a>
+
+  <br />
+  p IDOR: Your userid is: <a href="/idor/door?id=#{id}">#{id}</a>
+
+  <br />
+  p Rate-limited <a href="/ratelimit/limited">page</a>
+  p Not rate-limited <a href="/ratelimit/unlimited">page</a>
+
+  <br />
+  p RCE <a href="/rce/inject">example</a>
