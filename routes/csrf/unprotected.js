@@ -4,7 +4,7 @@ var router = express.Router();
 
 // Use a double submit cookie to provide CSRF protection.
 router.get('/', function (req, res, next) {
-  cookieValue = rn();
+  var cookieValue = rn();
   res.cookie('token', cookieValue, { maxAge: 360000, httpOnly: false, secure: false });
 
   res.send(buildRawPage(req));
